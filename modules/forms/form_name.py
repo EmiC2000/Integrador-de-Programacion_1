@@ -4,9 +4,8 @@ import modules.forms.form_stage as form_stage
 import modules.particip_juego as particip_juego
 import modules.auxiliar as aux
 
-from utn_fra.pygame_widgets import (
-    Label, Button, TextBox
-)
+from utn_fra.pygame_widgets import (Button, TextBox)
+from modules.label_custom import Label
 import modules.variables as var
 
 def create_form_name(dict_form_data: dict) -> dict:

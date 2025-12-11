@@ -76,16 +76,15 @@ def generar_bd_cartas(path_mazo: str) -> dict:
                 filename = carta
                 
 
-                # id_raider-waite-10_atk_68_def_36_hp_113.png
-
                 filename = filename.replace('.png', '')
                 datos_crudo = filename.split('_')
 
                 datos_card = {
-                    'id': datos_crudo[1],
-                    'atk': int(datos_crudo[3]),
-                    'def': int(datos_crudo[5]),
-                    'hp': int(datos_crudo[7]),
+                    'id': datos_crudo[0],
+                    'atk': int(datos_crudo[4]),
+                    'def': int(datos_crudo[6]),
+                    'hp': int(datos_crudo[2]),
+                    'bonus': int(datos_crudo[-1]),
                     'ruta_frente': card_path,
                     'ruta_reverso': ''
                 }

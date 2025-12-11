@@ -2,9 +2,8 @@ import pygame as pg
 import sys
 import modules.forms.base_form as base_form
 import modules.forms.form_stage as form_stage
-from utn_fra.pygame_widgets import (
-    Label, Button
-)
+from utn_fra.pygame_widgets import (Button)
+from modules.label_custom import Label
 import modules.variables as var
 import modules.sonido as sonido
 

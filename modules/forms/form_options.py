@@ -2,8 +2,9 @@ import pygame as pg
 import sys
 import modules.forms.base_form as base_form
 from utn_fra.pygame_widgets import (
-    Label, Button, ButtonImageSound
+    Button, ButtonImageSound
 )
+from modules.label_custom import Label
 import modules.variables as var
 import modules.sonido as sonido
 import modules.slider as Sl

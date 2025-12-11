@@ -8,9 +8,10 @@ import modules.carta as carta_jugador
 import modules.particip_juego as particip_juego
 
 from utn_fra.pygame_widgets import (
-    Label, Button, ButtonImage, ImageLabel
+    Button, ButtonImage, ImageLabel
 )
 import modules.variables as var
+from modules.label_custom import Label
 import modules.forms.form_pause as form_pause
 
 def crear_form_stage(dict_form_data: dict):
