@@ -51,15 +51,12 @@ def update_widgets(form_data: dict, event_list: list = None):
 
     """
     for widget in form_data.get('widgets_list'):
-        # Algunos widgets (por ejemplo `TextBox`) esperan recibir la lista de eventos
-        # como argumento en `update(event_list)`. Para evitar try/except comprobamos
-        # la firma del método `update` y llamamos con o sin `event_list` según corresponda.
+        
         if event_list is not None:
             try:
                 sig = inspect.signature(widget.update)
                 params = len(sig.parameters)
             except (ValueError, TypeError):
-                # Si no podemos inspeccionar la firma, llamamos sin argumentos
                 params = 0
 
             if params >= 1:
@@ -83,8 +80,6 @@ def set_active(form_name: str, change_music: bool = True):
 
     print(f"DEBUG: set_active -> activado {form_name}, change_music={change_music}")
 
-    # Limpiar eventos de click pendientes para evitar que el formulario nuevo reciba
-    # clicks residuales (ej. el último click del jugador que terminó la partida).
     pg.event.clear([pg.MOUSEBUTTONDOWN, pg.MOUSEBUTTONUP])
     print('DEBUG: Eventos de mouse limpiados al cambiar de pantalla')
 

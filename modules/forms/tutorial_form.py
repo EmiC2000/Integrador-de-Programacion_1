@@ -2,8 +2,10 @@ import pygame as pg
 import modules.forms.base_form as base_form
 from utn_fra.pygame_widgets import ButtonImage
 import modules.variables as var
-from modules.label_custom import Label
-from modules.button_custom import Button
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
+
 
 def create_form_tutorial(dict_form_data: dict) -> dict:
     """funcion el cual lleva a cabo create form tutorial.

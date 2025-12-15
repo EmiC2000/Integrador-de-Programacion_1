@@ -1,14 +1,12 @@
 import pygame as pg
 import sys
 import modules.forms.base_form as base_form
-from utn_fra.pygame_widgets import (
-    ButtonImageSound
-)
-from modules.label_custom import Label
 import modules.variables as var
 import modules.sonido as sonido
-import modules.slider as Sl
-from modules.button_custom import Button
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
+from modules.classes.slider import Slider as Sl
 
 def create_form_options(dict_form_data: dict) -> dict:
     """funcion el cual lleva a cabo create form options.
@@ -47,7 +45,7 @@ def create_form_options(dict_form_data: dict) -> dict:
         on_click=desactivar_musica, on_click_param=form
     )
 
-    form['sli_vol'] = Sl.Slider( 
+    form['sli_vol'] = Sl( 
         pos=(var.DIMENSION_PANTALLA[0] // 2, var.SLIDER_Y_POS),
         size= var.DIMENSION_SLIDER,
         val_ini=sonido.get_actual_volume(), 

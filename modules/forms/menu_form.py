@@ -2,9 +2,10 @@ import pygame as pg
 import sys
 import modules.forms.base_form as base_form
 import modules.forms.form_stage as form_stage
-from utn_fra.pygame_widgets import ( Button, ButtonSound,ButtonImageSound)
-from modules.label_custom import Label
-from modules.button_custom import Button
+from utn_fra.pygame_widgets import (ButtonSound)
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
 import modules.variables as var
 
 def create_form_menu(dict_form_data: dict) -> dict:

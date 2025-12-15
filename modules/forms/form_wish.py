@@ -4,8 +4,9 @@ import modules.forms.base_form as base_form
 import modules.forms.form_stage as form_stage
 import modules.stage as stage_juego
 import modules.particip_juego as particip_juego
-from modules.label_custom import Label
-from modules.button_custom import Button
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
 import modules.variables as var
 
 def create_form_wish(dict_form_data: dict) -> dict:

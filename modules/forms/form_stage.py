@@ -8,11 +8,12 @@ import modules.carta as carta_jugador
 import modules.particip_juego as particip_juego
 
 from utn_fra.pygame_widgets import (
-    ButtonImage, ImageLabel
+    ImageLabel
 )
 import modules.variables as var
-from modules.label_custom import Label
-from modules.button_custom import Button
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
 import modules.forms.form_pause as form_pause
 
 def crear_form_stage(dict_form_data: dict):
@@ -203,7 +204,7 @@ def verificar_terminado(form_dict_data: dict):
     stage = form_dict_data.get('stage')
     # Mostrar resultado cuando el stage haya finalizado (independientemente
     # de si quedan cartas). Evitar reactivar la pantalla si ya se mostró.
-    if stage_juego.esta_finalizado(stage) and not form_dict_data.get('stage_restart'):
+    if stage_juego.esta_finalizado(stage):
         print('EL JUEGO ESTA TERMINADO')
         ganador = stage_juego.obtener_ganador(stage)
         if ganador and particip_juego.get_nombre_participante(ganador) == 'Enemigo':

@@ -5,6 +5,6 @@
         "mazo_player": "blue_deck_expansion_2",
         "coordenada_mazo_enemigo": [0,0],
         "coordenada_mazo_player": [0,0],
-        "cantidad_cartas_jugadores": 30
+        "cantidad_cartas_jugadores": 10
     }
 }

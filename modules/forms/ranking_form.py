@@ -6,8 +6,9 @@ from utn_fra.pygame_widgets import (
     ButtonImageSound
 )
 import modules.variables as var
-from modules.label_custom import Label
-from modules.button_custom import Button
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
 
 def create_form_ranking(dict_form_data: dict) -> dict:
     """funcion el cual lleva a cabo create form ranking.

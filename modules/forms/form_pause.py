@@ -2,8 +2,9 @@ import pygame as pg
 import sys
 import modules.forms.base_form as base_form
 import modules.forms.form_stage as form_stage
-from modules.label_custom import Label
-from modules.button_custom import Button
+from modules.classes.label_custom import Label
+from modules.classes.button_custom import Button
+from modules.classes.button_image_sound import ButtonImageSound
 import modules.variables as var
 import modules.sonido as sonido
 
