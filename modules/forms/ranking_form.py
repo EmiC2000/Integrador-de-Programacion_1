@@ -3,11 +3,22 @@ import sys
 import modules.forms.base_form as base_form
 import modules.auxiliar as aux
 from utn_fra.pygame_widgets import (
-    Label, Button, ButtonImageSound
+    ButtonImageSound
 )
 import modules.variables as var
+from modules.label_custom import Label
+from modules.button_custom import Button
 
 def create_form_ranking(dict_form_data: dict) -> dict:
+    """funcion el cual lleva a cabo create form ranking.
+
+    Args:
+        dict_form_data (tipo): descripcion del parametro dict_form_data.
+
+    Returns:
+        tipo: descripcion del valor devuelto.
+
+    """
     form = base_form.create_base_form(dict_form_data)
 
     form['lista_ranking_file'] = []
@@ -17,9 +28,9 @@ def create_form_ranking(dict_form_data: dict) -> dict:
     form['data_loaded'] = False
 
     form['lbl_titulo'] = Label(
-        x=var.DIMENSION_PANTALLA[0] // 2, y=100,
+        pos = (var.DIMENSION_PANTALLA[0] // 2, 100),
         text='TOP 10 Ranking', screen=form.get('screen'),
-        font_path=var.FONT_SAIYAN, font_size=100,
+        font_path=var.FONT_HEINAN, font_size=50,
         outline_color = (0,0,0), outline_thickness = 2
     )
 
@@ -42,6 +53,12 @@ def create_form_ranking(dict_form_data: dict) -> dict:
     return form
 
 def cambiar_pantalla(param_list: list):
+    """funcion el cual lleva a cabo cambiar pantalla.
+
+    Args:
+        param_list (tipo): descripcion del parametro param_list.
+
+    """
     form_ranking = param_list[0]
     form_name = param_list[1]
 
@@ -53,6 +70,12 @@ def cambiar_pantalla(param_list: list):
 
 def init_ranking_data(form_dict_data: dict):
 
+    """funcion el cual lleva a cabo init ranking data.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     matrix = form_dict_data.get('lista_ranking_file')
     color_texto = (240, 240, 0)
     y_coord_inicial = 190
@@ -60,7 +83,7 @@ def init_ranking_data(form_dict_data: dict):
         fila = matrix[indice_fila]
 
         posicion = Label(
-            x=var.DIMENSION_PANTALLA[0] // 2 - 150, y=y_coord_inicial,
+            pos=(var.DIMENSION_PANTALLA[0] // 2 - 150, y_coord_inicial),
             text=f'{indice_fila + 1}', screen=form_dict_data.get('screen'),
             font_size=40, font_path=var.FONT_HEINAN, color=color_texto,
             outline_color = (0,0,0), outline_thickness = 2
@@ -68,14 +91,14 @@ def init_ranking_data(form_dict_data: dict):
         )
 
         nombre = Label(
-            x=var.DIMENSION_PANTALLA[0] // 2, y=y_coord_inicial,
+            pos=(var.DIMENSION_PANTALLA[0] // 2 , y_coord_inicial),
             text=fila[0], screen=form_dict_data.get('screen'),
             font_size=40, font_path=var.FONT_HEINAN, color=color_texto,
             outline_color = (0,0,0), outline_thickness = 2
         )
 
         score = Label(
-            x=var.DIMENSION_PANTALLA[0] // 2 + 150, y=y_coord_inicial,
+            pos=(var.DIMENSION_PANTALLA[0] // 2 + 150, y_coord_inicial),
             text=f'{fila[1]}', screen=form_dict_data.get('screen'),
             font_size=40, font_path=var.FONT_HEINAN, color=color_texto,
             outline_color = (0,0,0), outline_thickness = 2
@@ -91,12 +114,24 @@ def init_ranking_data(form_dict_data: dict):
             color_texto = (255, 255, 255)
 
 def inicializar_ranking_archivo(form_dict_data: dict):
+    """funcion el cual lleva a cabo inicializar ranking archivo.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     if not form_dict_data.get('data_loaded'):
         form_dict_data['lista_ranking_file'] = aux.cargar_ranking(var.RANKING_CSV, top=7)
         init_ranking_data(form_dict_data)
         form_dict_data['data_loaded'] = True
 
 def draw(form_dict_data: dict):
+    """funcion el cual lleva a cabo draw.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     base_form.draw(form_dict_data)
     base_form.draw_widgets(form_dict_data)
     for widget in form_dict_data.get('lista_ranking_GUI'):
@@ -104,6 +139,12 @@ def draw(form_dict_data: dict):
 
 def update(form_dict_data: dict):
 
+    """funcion el cual lleva a cabo update.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     if not form_dict_data.get('data_loaded'):
         inicializar_ranking_archivo(form_dict_data)
 

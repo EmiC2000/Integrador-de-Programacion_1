@@ -7,11 +7,22 @@ import modules.forms.form_pause as pause_form
 import modules.forms.form_stage as stage_form
 import modules.forms.form_name as form_name
 import modules.forms.form_wish as wish_form
+import modules.forms.tutorial_form as tutorial_form
 
 from utn_fra.pygame_widgets import MousePointer, Particle
 
 
 def create_form_controller(screen: pg.Surface, datos_juego: dict):
+    """funcion el cual lleva a cabo create form controller.
+
+    Args:
+        screen (tipo): descripcion del parametro screen.
+        datos_juego (tipo): descripcion del parametro datos_juego.
+
+    Returns:
+        tipo: descripcion del valor devuelto.
+
+    """
     controller = {}
 
     controller['main_screen'] = screen
@@ -27,7 +38,7 @@ def create_form_controller(screen: pg.Surface, datos_juego: dict):
 
     cursor_img = pg.image.load(var.MOUSE_POINTER).convert_alpha()
     size = cursor_img.get_size()
-    half_size = (size[0] // 3, size[1] // 3) 
+    half_size = (size[0] // 4, size[1] // 4) 
     cursor_img = pg.transform.scale(cursor_img, half_size)
 
 
@@ -41,6 +52,18 @@ def create_form_controller(screen: pg.Surface, datos_juego: dict):
                 "name": 'form_menu',
                 "screen": controller.get('main_screen'),
                 "active": True,
+                "coord": (0, 0),
+                "music_path": var.MUSICA_MENU,
+                "background": var.FONDO_MENU,
+                "screen_dimentions": var.DIMENSION_PANTALLA,
+                "music_config": controller.get('music_config')
+            }
+        ),
+        tutorial_form.create_form_tutorial(
+            {
+                "name": 'form_tutorial',
+                "screen": controller.get('main_screen'),
+                "active": False,
                 "coord": (0, 0),
                 "music_path": var.MUSICA_MENU,
                 "background": var.FONDO_MENU,
@@ -129,6 +152,13 @@ def create_form_controller(screen: pg.Surface, datos_juego: dict):
 
 def forms_update(form_controller: dict, eventos: list[pg.event.Event]):
 
+    """funcion el cual lleva a cabo forms update.
+
+    Args:
+        form_controller (tipo): descripcion del parametro form_controller.
+        eventos (tipo): descripcion del parametro eventos.
+
+    """
     lista_formularios = form_controller.get('forms_list')
     
     for form in lista_formularios:
@@ -138,51 +168,70 @@ def forms_update(form_controller: dict, eventos: list[pg.event.Event]):
                     form_menu = lista_formularios[0]
                     menu_form.update(form_menu)
                     menu_form.draw(form_menu)
+                case 'form_tutorial':
+                    form_tutorial = lista_formularios[1]
+                    tutorial_form.update(form_tutorial)
+                    tutorial_form.draw(form_tutorial)
                 case 'form_ranking':
-                    form_ranking = lista_formularios[1]
+                    form_ranking = lista_formularios[2]
                     ranking_form.update(form_ranking)
                     ranking_form.draw(form_ranking)
                 case 'form_options':
-                    form_options = lista_formularios[2]
+                    form_options = lista_formularios[3]
                     options_form.update(form_options)
                     options_form.draw(form_options)
                 case 'form_pause':
-                    form_pause = lista_formularios[3]
+                    form_pause = lista_formularios[4]
                     pause_form.update(form_pause)
                     pause_form.draw(form_pause)
                 case 'form_stage':
-                    form_stage = lista_formularios[4]
+                    form_stage = lista_formularios[5]
                     stage_form.update(form_stage, eventos)
                     stage_form.draw(form_stage)
                 case 'form_name':
-                    name_form = lista_formularios[5]
+                    name_form = lista_formularios[6]
                     form_name.update(name_form, eventos)
                     form_name.draw(name_form)
                 case 'form_wish':
-                    form_wish = lista_formularios[6]
+                    form_wish = lista_formularios[7]
                     wish_form.update(form_wish)
                     wish_form.draw(form_wish)
 
 def handle_events(eventos: list[pg.event.Event], form_controller: dict):
 
+    """funcion el cual lleva a cabo handle events.
+
+    Args:
+        eventos (tipo): descripcion del parametro eventos.
+        form_controller (tipo): descripcion del parametro form_controller.
+
+    """
     for evento in eventos:
         if evento.type == form_controller.get('particle_event'):
             for _ in range(10):
                 form_controller['particle_manager'].add_particles()
 
 def update(form_controller: dict, eventos: list[pg.event.Event]):
+    """funcion el cual lleva a cabo update.
+
+    Args:
+        form_controller (tipo): descripcion del parametro form_controller.
+        eventos (tipo): descripcion del parametro eventos.
+
+    """
     forms_update(form_controller, eventos)
     handle_events(eventos, form_controller)
 
     mouse_pos = pg.mouse.get_pos() 
     mouse_cursor = form_controller.get('mouse_cursor')
+    OFFSET_X = -5
+    OFFSET_Y = -5
+
+   
+    interaction_x = mouse_cursor.rect.x - OFFSET_X # <-- Esta es la posición (x, y) donde apunta
+    interaction_y = mouse_cursor.rect.y - OFFSET_Y # <-- el puntero del sistema (antes de los offsets)
     
-
     mouse_cursor.update() 
-
-
-    OFFSET_X = -10 
-    OFFSET_Y = -25 
     mouse_cursor.rect.x += OFFSET_X
     mouse_cursor.rect.y += OFFSET_Y
 

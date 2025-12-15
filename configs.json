@@ -1,14 +1,8 @@
 {
     "nivel_1": {
-        "ruta_mazos": "assets/img/decks/",
-        "mazo_enemigo": "silver_deck_expansion_3",
-        "mazo_player": "silver_deck_expansion_2",
-        "coordenada_mazo_enemigo": [0,0],
-        "coordenada_mazo_player": [0,0],
-        "cantidad_cartas_jugadores": 30
-    },
-    "nivel_2": {
-        "ruta_mazo": "",
+        "ruta_mazos": "assets/img/DECKS/",
+        "mazo_enemigo": "black_deck_expansion_1",
+        "mazo_player": "blue_deck_expansion_2",
         "coordenada_mazo_enemigo": [0,0],
         "coordenada_mazo_player": [0,0],
         "cantidad_cartas_jugadores": 30

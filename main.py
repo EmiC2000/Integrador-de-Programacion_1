@@ -1,4 +1,4 @@
-from modules.juego import pythonisa
+from modules.juego import dragon_ball
 
 if __name__ == '__main__':
-    pythonisa() 
+    dragon_ball() 

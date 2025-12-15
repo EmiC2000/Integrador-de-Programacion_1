@@ -5,8 +5,11 @@ import modules.forms.form_controller as form_controller
 import modules.particip_juego as participante
 import modules.sonido as sonido
 
-def pythonisa():
+def dragon_ball():
 
+    """funcion el cual lleva a cabo dragon ball.
+
+    """
     pg.init()
 
     pg.display.set_caption(var.TITULO_JUEGO)

@@ -8,13 +8,23 @@ import modules.carta as carta_jugador
 import modules.particip_juego as particip_juego
 
 from utn_fra.pygame_widgets import (
-    Button, ButtonImage, ImageLabel
+    ButtonImage, ImageLabel
 )
 import modules.variables as var
 from modules.label_custom import Label
+from modules.button_custom import Button
 import modules.forms.form_pause as form_pause
 
 def crear_form_stage(dict_form_data: dict):
+    """funcion el cual lleva a cabo crear form stage.
+
+    Args:
+        dict_form_data (dict): descripcion del parametro dict_form_data.
+
+    Returns:
+        form: retorna formulario.
+
+    """
     form = base_form.create_base_form(dict_form_data)
 
     form['stage_restart'] = False
@@ -34,28 +44,28 @@ def crear_form_stage(dict_form_data: dict):
 
     # ========== LABELS ==========
     form['lbl_timer'] = Label(
-        x=50, y=15,
+        pos = (50, 15),
         text=f'{stage_juego.obtener_tiempo(form.get('stage'))}', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=45, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
     )
 
     form['lbl_score'] = Label(
-        x=450, y=15,
+        pos = (450, 15),
         text=f'Score: 0', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=45, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
     )
 
     form['lbl_carta_e'] = Label(
-        x=200, y=275,
+        pos = (200, 275),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=20, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
     )
 
     form['lbl_carta_p'] = Label(
-        x=200, y=563,
+        pos = (200, 563),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=20, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
@@ -72,34 +82,30 @@ def crear_form_stage(dict_form_data: dict):
         width=32, height=32,
     )
 
-    # Stats Enemigo
-
     form['lbl_enemigo_hp'] = Label(
-        x=617, y=85,
+        pos = (800,100),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=25, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
     )
     
     form['lbl_enemigo_atk'] = Label(
-        x=617, y=120,
+        pos = (800,150),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=25, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
     )
     
     form['lbl_enemigo_def'] = Label(
-        x=617, y=155,
+        pos = (800,200),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=25, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
 
     )
 
-    # Stats Player
-
     form['lbl_jugador_hp'] = Label(
-        x=617, y=365,
+        pos = (800,400),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=25, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
@@ -107,14 +113,14 @@ def crear_form_stage(dict_form_data: dict):
     )
     
     form['lbl_jugador_atk'] = Label(
-        x=617, y=395,
+        pos = (800,450),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=25, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
     )
     
     form['lbl_jugador_def'] = Label(
-        x=617, y=425,
+        pos = (800,500),
         text=f'', screen=form.get('screen'),
         align='topleft', font_path=var.FONT_HEINAN, font_size=25, color=var.colores.get('naranja'),
         outline_color = var.colores.get('negro'), outline_thickness = 3
@@ -124,26 +130,30 @@ def crear_form_stage(dict_form_data: dict):
     # ========== BUTTONS ==========
 
     form['btn_play'] = Button(
-        x=616, y=250,
+        x=800, y=250,
         text='JUGAR', screen=form.get('screen'),
-        font_path=var.FONT_HEINAN, font_size= 20, color= var.colores.get('blanco'),outline_color = (0,0,0), outline_thickness = 2,
+        font_path=var.FONT_HEINAN, font_size= 20, color= var.colores.get('blanco'),
+        outline_color = (0,0,0), outline_thickness = 3,
         on_click=jugar_mano, on_click_param=form,
         align='topleft'
     )
 
     form['btn_heal'] = Button(
-        x=616, y=280,
+        x=800, y=300,
         text='HEAL', screen=form.get('screen'),
-        font_path=var.FONT_HEINAN, font_size= 20, color= var.colores.get('blanco'),outline_color = (0,0,0), outline_thickness = 2,
+        font_path=var.FONT_HEINAN, font_size= 20, color= var.colores.get('blanco'),
+        outline_color = (0,0,0), outline_thickness = 3,
         on_click=call_wish_form, on_click_param={'form': form, 'wish': 'HEAL'},
         align='topleft'
     )
 
-    form['btn_jackpot'] = Button(
-        x=616, y=310,
-        text='JACKPOT', screen=form.get('screen'),
-        font_path=var.FONT_HEINAN, font_size= 20, color= var.colores.get('blanco'),outline_color = (0,0,0), outline_thickness = 2,
-        on_click=call_wish_form, on_click_param={'form': form, 'wish': 'SCORE X3'},
+
+    form['btn_shield'] = Button(
+        x=800, y=350,
+        text='SHIELD', screen=form.get('screen'),
+        font_path=var.FONT_HEINAN, font_size= 20, color= var.colores.get('blanco'),
+        outline_color = (0,0,0), outline_thickness = 3,
+        on_click=call_wish_form, on_click_param={'form': form, 'wish': 'SHIELD'},
         align='topleft'
     )
 
@@ -164,7 +174,7 @@ def crear_form_stage(dict_form_data: dict):
 
     form['widgets_list_bonus'] = [
         form.get('btn_heal'),
-        form.get('btn_jackpot')
+        form.get('btn_shield')
     ]
 
     var.dict_forms_status[form.get('name')] = form
@@ -172,29 +182,49 @@ def crear_form_stage(dict_form_data: dict):
     return form
 
 def jugar_mano(form_dict_data: dict):
+    """funcion el cual lleva a cabo jugar mano.
+
+    Args:
+        form_dict_data (dict): descripcion del parametro form_dict_data.
+
+    """
     stage = form_dict_data.get('stage')
     if stage_juego.hay_jugadores_con_cartas(stage):
         critical, ganador_mano = stage_juego.jugar_mano(stage)
         print(f'El ganador de la mano es: {ganador_mano}')
 
 def verificar_terminado(form_dict_data: dict):
+    """funcion el cual lleva a cabo verificar terminado.
+
+    Args:
+        form_dict_data (dict): descripcion del parametro form_dict_data.
+
+    """
     stage = form_dict_data.get('stage')
-    if not stage_juego.hay_jugadores_con_cartas(stage) and stage_juego.esta_finalizado(stage):
+    # Mostrar resultado cuando el stage haya finalizado (independientemente
+    # de si quedan cartas). Evitar reactivar la pantalla si ya se mostró.
+    if stage_juego.esta_finalizado(stage) and not form_dict_data.get('stage_restart'):
         print('EL JUEGO ESTA TERMINADO')
-        # print(f'ganador: {stage_juego.obtener_ganador(stage)}')
-        if particip_juego.get_nombre_participante(
-            stage_juego.obtener_ganador(stage)
-        ) == 'Enemigo':
+        ganador = stage_juego.obtener_ganador(stage)
+        if ganador and particip_juego.get_nombre_participante(ganador) == 'Enemigo':
             win_status = False
         else:
             win_status = True
-        # activar el form enter name
+
         name_form = var.dict_forms_status.get('form_name')
-        form_name.update_texto_victoria(name_form, win_status)
+        print(f"DEBUG: verificar_terminado -> stage_restart={form_dict_data.get('stage_restart')}, name_form_exists={name_form is not None}, win_status={win_status}")
+        if name_form is None:
+            print('WARN: form_name no está registrado en dict_forms_status; no se puede actualizar el texto')
+        else:
+            form_name.update_texto_victoria(name_form, win_status)
+
+        print('DEBUG: Llamando a base_form.set_active("form_name")')
         base_form.set_active('form_name')
+        # Marcar para que no volvamos a abrir la misma pantalla repetidamente
+        form_dict_data['stage_restart'] = True
 
 def call_wish_form(params: dict):
-    """'form': form, 'wish': 'SCORE X3'"""
+    """'form': form, 'wish': 'SHIELD'"""
     print('DENTRO DE LA FUNCION CALL_WISH')
 
     form_dict_data = params.get('form')
@@ -207,12 +237,24 @@ def call_wish_form(params: dict):
     print(f'Estado de activacion: {wish_form.get("active")}')
 
 def iniciar_nueva_partida(form_dict_data: dict):
+    """funcion el cual lleva a cabo iniciar nueva partida.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     stage = form_dict_data.get('stage')
     jugador = form_dict_data.get('jugador')
     pantalla = form_dict_data.get('screen')
     form_dict_data['stage'] = stage_juego.restart_stage(stage_data=stage, jugador=jugador, pantalla=pantalla, nro_stage=stage.get('nro_stage'))
 
 def events_handler(events: list[pg.event.Event]):
+    """funcion el cual lleva a cabo events handler.
+
+    Args:
+        events (tipo): descripcion del parametro events.
+
+    """
     for event in events:
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_ESCAPE:
@@ -223,6 +265,12 @@ def events_handler(events: list[pg.event.Event]):
             print(event.pos)
                 
 def update_lbls_card_info(form_dict_data: dict):
+    """funcion el cual lleva a cabo update lbls card info.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     mazo_enemigo = form_dict_data.get('stage').get('enemigo').get('cartas_mazo_usadas')
     mazo_player = form_dict_data.get('stage').get('jugador').get('cartas_mazo_usadas')
 
@@ -241,6 +289,13 @@ def update_lbls_card_info(form_dict_data: dict):
         )
 
 def update_lbls_participante(form_dict_data: dict, tipo_participante: str):
+    """funcion el cual lleva a cabo update lbls participante.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+        tipo_participante (tipo): descripcion del parametro tipo_participante.
+
+    """
     participante = form_dict_data.get('stage').get(tipo_participante)
 
     form_dict_data[f'lbl_{tipo_participante}_hp'].update_text(text=f'HP: {particip_juego.get_hp_participante(participante)}', color=var.colores.get('naranja'))
@@ -248,38 +303,74 @@ def update_lbls_participante(form_dict_data: dict, tipo_participante: str):
     form_dict_data[f'lbl_{tipo_participante}_def'].update_text(text=f'DEF: {particip_juego.get_defense_participante(participante)}', color=var.colores.get('naranja'))
 
 def update_score(form_dict_data: dict):
+    """funcion el cual lleva a cabo update score.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     participante = form_dict_data.get('stage').get('jugador')
     score = participante.get('score')
     form_dict_data.get('lbl_score').update_text(text=f'Score: {score}', color=var.colores.get('naranja'))
 
 def draw_bonus_widgets(form_dict_data: dict):
+    """funcion el cual lleva a cabo draw bonus widgets.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     widgets_bonus = form_dict_data.get('widgets_list_bonus')
     stage = form_dict_data.get('stage')
     if stage.get('heal_available'):
         widgets_bonus[0].draw()
-    if stage.get('jackpot_available'):
+    if stage.get('shield_available'):
         widgets_bonus[1].draw()
 
 def draw_heal_icon(form_dict_data: dict):
+    """funcion el cual lleva a cabo draw heal icon.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     stage = form_dict_data.get('stage')
     if not stage.get('heal_available'):
         form_dict_data.get('lbl_buff').draw()
 
 def update_heal_icon(form_dict_data: dict):
+    """funcion el cual lleva a cabo update heal icon.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     stage = form_dict_data.get('stage')
     if not stage.get('heal_available'):
         form_dict_data.get('lbl_buff').update([])
 
 def update_bonus_widgets(form_dict_data: dict):
+    """funcion el cual lleva a cabo update bonus widgets.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     widgets_bonus = form_dict_data.get('widgets_list_bonus')
     stage = form_dict_data.get('stage')
     if stage.get('heal_available'):
         widgets_bonus[0].update()
-    if stage.get('jackpot_available'):
+    if stage.get('shield_available'):
         widgets_bonus[1].update()
 
 
 def draw(form_dict_data: dict):
+    """funcion el cual lleva a cabo draw.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+
+    """
     base_form.draw(form_dict_data)
     stage_juego.draw_jugadores(form_dict_data.get('stage'))
     base_form.draw_widgets(form_dict_data)
@@ -288,6 +379,13 @@ def draw(form_dict_data: dict):
 
 
 def update(form_dict_data: dict, eventos: list[pg.event.Event]):
+    """funcion el cual lleva a cabo update.
+
+    Args:
+        form_dict_data (tipo): descripcion del parametro form_dict_data.
+        eventos (tipo): descripcion del parametro eventos.
+
+    """
     form_dict_data['lbl_timer'].update_text(f'{stage_juego.obtener_tiempo(form_dict_data.get('stage'))}', var.colores.get('naranja'), )
     base_form.update(form_dict_data)
     stage_juego.update(form_dict_data.get('stage'))
