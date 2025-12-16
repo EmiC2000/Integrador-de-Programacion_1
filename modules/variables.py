@@ -12,7 +12,7 @@ DIMENSION_BOTONES = (300, 70)
 SLIDER_Y_POS = 400
 DIMENSION_SLIDER = (300, 100)
 ########## Configs Player ##########
-CANTIDAD_VIDAS = 3
+CANTIDAD_VIDAS = 30000
 
 ########## Configs Audio ##########
 VOLUMEN_INICIAL = 51
